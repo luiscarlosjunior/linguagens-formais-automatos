@@ -44,8 +44,18 @@ void reverso(const char *palavra, char *resultado) {
  * Se u = a1...am e v = b1...bn, então u·v = a1...am b1...bn.
  * Propriedade: |u·v| = |u| + |v|
  * Elemento neutro: w·ε = ε·w = w
+ *
+ * Pré-condição: o buffer `resultado` deve ter pelo menos MAX_PALAVRA bytes.
  */
 void concatenar(const char *u, const char *v, char *resultado) {
+    size_t lu = strlen(u);
+    size_t lv = strlen(v);
+    if (lu + lv >= MAX_PALAVRA) {
+        fprintf(stderr, "Erro: concatenação excede o tamanho máximo (%d).\n",
+                MAX_PALAVRA);
+        resultado[0] = '\0';
+        return;
+    }
     strcpy(resultado, u);
     strcat(resultado, v);
 }
@@ -55,11 +65,20 @@ void concatenar(const char *u, const char *v, char *resultado) {
  * w^0 = ε (palavra vazia)
  * w^n = w · w^(n-1), para n ≥ 1
  * Exemplo: (ab)^3 = ababab
+ *
+ * Pré-condição: o buffer `resultado` deve ter pelo menos MAX_PALAVRA bytes.
  */
 void potencia(const char *palavra, int n, char *resultado) {
+    size_t lp = strlen(palavra);
     resultado[0] = '\0';
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++) {
+        if (strlen(resultado) + lp >= MAX_PALAVRA) {
+            fprintf(stderr, "Erro: potência excede o tamanho máximo (%d).\n",
+                    MAX_PALAVRA);
+            return;
+        }
         strcat(resultado, palavra);
+    }
 }
 
 /*

@@ -181,6 +181,14 @@ static void construir_afd(const AFND *afnd, AFD *afd)
             int idx_destino = buscar_subconjunto(afd, conj_destino);
 
             if (idx_destino < 0) {
+                /* Verifica se o AFD ainda cabe nos limites */
+                if (afd->num_estados >= MAX_ESTADOS_AFD) {
+                    fprintf(stderr,
+                            "Erro: número de estados do AFD excede o limite "
+                            "(%d). Aumente MAX_ESTADOS_AFD.\n",
+                            MAX_ESTADOS_AFD);
+                    return;
+                }
                 /* Novo subconjunto: adiciona como novo estado do AFD */
                 idx_destino = afd->num_estados;
                 afd->subconjunto[idx_destino] = conj_destino;

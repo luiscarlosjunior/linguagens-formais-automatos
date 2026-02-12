@@ -123,7 +123,8 @@ int ap_aceita(const char *palavra)
     char topo_char;
 
     pilha_inicializar(&pilha);
-    pilha_push(&pilha, 'Z'); /* símbolo inicial da pilha */
+    if (!pilha_push(&pilha, 'Z')) /* símbolo inicial da pilha */
+        return 0;
 
     printf("  Configurações:\n");
     imprimir_config(estado, palavra, pos, &pilha);
@@ -141,7 +142,8 @@ int ap_aceita(const char *palavra)
         if (estado == Q0 && simbolo == 'a') {
             /* δ(q0, a, Z) = {(q0, AZ)} e δ(q0, a, A) = {(q0, AA)} */
             if (topo_char == 'Z' || topo_char == 'A') {
-                pilha_push(&pilha, 'A');
+                if (!pilha_push(&pilha, 'A'))
+                    return 0; /* pilha cheia — rejeita */
                 pos++;
                 imprimir_config(estado, palavra, pos, &pilha);
                 continue;
@@ -152,7 +154,8 @@ int ap_aceita(const char *palavra)
         if (estado == Q0 && simbolo == 'b') {
             /* δ(q0, b, A) = {(q1, ε)} */
             if (topo_char == 'A') {
-                pilha_pop(&pilha, &topo_char);
+                if (!pilha_pop(&pilha, &topo_char))
+                    return 0; /* erro inesperado na pilha — rejeita */
                 estado = Q1;
                 pos++;
                 imprimir_config(estado, palavra, pos, &pilha);
@@ -164,7 +167,8 @@ int ap_aceita(const char *palavra)
         if (estado == Q1 && simbolo == 'b') {
             /* δ(q1, b, A) = {(q1, ε)} */
             if (topo_char == 'A') {
-                pilha_pop(&pilha, &topo_char);
+                if (!pilha_pop(&pilha, &topo_char))
+                    return 0; /* erro inesperado na pilha — rejeita */
                 pos++;
                 imprimir_config(estado, palavra, pos, &pilha);
                 continue;

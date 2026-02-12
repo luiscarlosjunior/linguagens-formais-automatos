@@ -565,9 +565,7 @@ O Lema do Bombeamento é uma condição **necessária mas não suficiente** para
 Implementações em linguagem C dos algoritmos discutidos neste capítulo estão disponíveis no diretório `src/05-minimizacao/`:
 
 - **Conversão AFND → AFD** (construção de subconjuntos)
-- **Remoção de ε-transições** (cálculo de ε-fecho)
 - **Minimização de AFD** (algoritmo de preenchimento de tabela)
-- **Verificação do Lema do Bombeamento** (simulação para cadeias específicas)
 
 Consulte os arquivos-fonte e seus respectivos comentários para detalhes de implementação. Cada programa inclui exemplos de entrada que correspondem aos autômatos apresentados nas seções anteriores, permitindo ao estudante verificar os resultados manualmente.
 

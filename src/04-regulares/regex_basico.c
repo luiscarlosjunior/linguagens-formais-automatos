@@ -36,8 +36,8 @@
  *   regex  — ponteiro para o padrão (expressão regular)
  *   texto  — ponteiro para a cadeia de entrada
  *
- * Retorna 1 se regex casa com algum prefixo de texto (casamento ancorado
- * ao início), 0 caso contrário.
+ * Retorna 1 se regex casa com o texto inteiro (casamento ancorado ao
+ * início e ao fim), 0 caso contrário.
  *
  * A lógica segue diretamente as regras de derivação de expressões regulares:
  *   - Se regex está vazio, o casamento é bem-sucedido (ε casa com ε).

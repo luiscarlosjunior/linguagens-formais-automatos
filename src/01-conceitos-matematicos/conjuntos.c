@@ -32,10 +32,21 @@ bool pertence(Conjunto *c, int elem) {
 
 /* Adiciona um elemento ao conjunto (sem duplicatas) */
 void adicionar(Conjunto *c, int elem) {
-    if (!pertence(c, elem)) {
-        c->elementos[c->tamanho] = elem;
-        c->tamanho++;
+    /* Não adiciona se o elemento já pertence ao conjunto */
+    if (pertence(c, elem))
+        return;
+
+    /* Verifica capacidade antes de escrever no array */
+    if (c->tamanho >= MAX) {
+        fprintf(stderr,
+                "Erro: conjunto atingiu a capacidade máxima (%d elementos). "
+                "Elemento %d não foi adicionado.\n",
+                MAX, elem);
+        return;
     }
+
+    c->elementos[c->tamanho] = elem;
+    c->tamanho++;
 }
 
 /* Imprime os elementos do conjunto no formato {e1, e2, ...} */

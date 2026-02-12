@@ -494,19 +494,17 @@ Autômatos finitos são utilizados em **model checking** — uma técnica de ver
 
 ## 4.8 Implementação em C
 
-O diretório `src/04-regulares/` contém uma implementação em linguagem C que demonstra os conceitos fundamentais deste capítulo na prática. O programa inclui:
+O diretório `src/04-regulares/` contém uma implementação em linguagem C que demonstra os conceitos fundamentais deste capítulo na prática. O programa `regex_basico.c` inclui:
 
-- **Representação de expressões regulares** como árvores sintáticas (AST), com nós para as operações básicas (união, concatenação e estrela de Kleene).
-- **Construção de Thompson**: conversão de uma expressão regular em um AFND-ε, implementando os casos base (∅, ε, símbolo) e os passos indutivos (união, concatenação, estrela) descritos na Seção 4.4.2.
-- **Simulação do AFND-ε**: verificação de pertinência de cadeias à linguagem, calculando o ε-fecho e processando transições símbolo a símbolo.
-- **Exemplos interativos**: o programa constrói autômatos a partir de expressões regulares fornecidas e testa a aceitação de diversas cadeias, exibindo os estados e transições do autômato construído.
+- **Implementação de um motor básico de expressões regulares em C**, utilizando uma função recursiva de *matching* diretamente sobre a expressão.
+- **Suporte às operações fundamentais** de expressões regulares: concatenação implícita, curinga (`.`) e estrela de Kleene (`*`).
+- **Foco didático** na ligação entre a definição indutiva de expressões regulares e o algoritmo recursivo de reconhecimento, sem construção explícita de autômatos.
 
 Para compilar e executar:
 
 ```bash
-cd src/04-regulares/
-gcc -o regulares main.c -Wall -Wextra
-./regulares
+make regex_basico
+./bin/regex_basico
 ```
 
 Consulte o código-fonte e os comentários para detalhes de implementação.
