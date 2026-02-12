@@ -481,7 +481,7 @@ Cada fronteira neste diagrama representa uma **separação estrita**: existem li
 
 Uma implementação em linguagem C dos conceitos discutidos neste capítulo está disponível no diretório `src/09-maquina-turing/`:
 
-- **Simulação de Máquina de Turing** — implementação de uma MT determinística com fita única que reconhece a linguagem L = { aⁿbⁿcⁿ | n ≥ 1 }
+- **Simulação de Máquina de Turing** — implementação de uma MT determinística com fita única que reconhece a linguagem L = { aⁿbⁿ | n ≥ 1 }
 
 Consulte os arquivos-fonte e seus respectivos comentários para detalhes de implementação. Cada programa inclui exemplos de entrada que correspondem às máquinas e computações apresentadas nas seções anteriores, permitindo ao estudante verificar os resultados manualmente.
 
