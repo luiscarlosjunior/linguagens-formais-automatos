@@ -18,7 +18,8 @@ EXECUTABLES = \
 	$(BINDIR)/arvore_derivacao \
 	$(BINDIR)/gramatica_sensivel \
 	$(BINDIR)/maquina_turing \
-	$(BINDIR)/avaliador_expressoes
+	$(BINDIR)/avaliador_expressoes \
+	$(BINDIR)/busca_padrao
 
 # Alvo padrão: compilar todos os executáveis
 all: $(BINDIR) $(EXECUTABLES)
@@ -74,6 +75,10 @@ $(BINDIR)/maquina_turing: src/09-maquina-turing/maquina_turing.c | $(BINDIR)
 
 # Aplicações de Árvore de Derivação
 $(BINDIR)/avaliador_expressoes: src/10-aplicacoes-arvore/avaliador_expressoes.c | $(BINDIR)
+	$(CC) $(CFLAGS) -o $@ $<
+
+# Aplicações de Autômatos
+$(BINDIR)/busca_padrao: src/11-aplicacoes-automatos/busca_padrao.c | $(BINDIR)
 	$(CC) $(CFLAGS) -o $@ $<
 
 # Compilar e executar todos os programas sequencialmente

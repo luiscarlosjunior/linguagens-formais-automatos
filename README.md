@@ -11,7 +11,7 @@ O conteúdo abrange a teoria clássica de linguagens formais e autômatos, funda
 - **Menezes** — *Linguagens Formais e Autômatos*
 - **Sudkamp** — *Languages and Machines*
 
-Os tópicos cobrem desde os conceitos matemáticos preliminares até gramáticas livres de contexto e autômatos com pilha, passando por autômatos finitos, linguagens regulares e propriedades de fechamento.
+Os tópicos cobrem desde os conceitos matemáticos preliminares até gramáticas livres de contexto e autômatos com pilha, passando por autômatos finitos, linguagens regulares e propriedades de fechamento, estendendo-se até máquinas de Turing e aplicações práticas de autômatos e árvores de derivação.
 
 ## Sumário
 
@@ -22,6 +22,10 @@ Os tópicos cobrem desde os conceitos matemáticos preliminares até gramáticas
 5. [Minimização de Autômato, Lema do Bombeamento e Conversão de AFND para AFD](docs/05-minimizacao-bombeamento-conversao.md)
 6. [Gramática Livre de Contexto e Autômato com Pilha](docs/06-gramatica-livre-contexto.md)
 7. [Árvore de Derivação e Ambiguidade](docs/07-arvore-derivacao-ambiguidade.md)
+8. [Gramáticas Sensíveis ao Contexto](docs/08-gramaticas-sensiveis-contexto.md)
+9. [Máquina de Turing](docs/09-maquina-de-turing.md)
+10. [Aplicações de Árvore de Derivação](docs/10-aplicacoes-arvore-derivacao.md)
+11. [Aplicações de Autômatos](docs/11-aplicacoes-automatos.md)
 
 ## Exemplos em C
 
