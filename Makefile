@@ -15,7 +15,8 @@ EXECUTABLES = \
 	$(BINDIR)/conversao_afnd_afd \
 	$(BINDIR)/minimizacao \
 	$(BINDIR)/automato_pilha \
-	$(BINDIR)/arvore_derivacao
+	$(BINDIR)/arvore_derivacao \
+	$(BINDIR)/gramatica_sensivel
 
 # Alvo padrão: compilar todos os executáveis
 all: $(BINDIR) $(EXECUTABLES)
@@ -59,6 +60,10 @@ $(BINDIR)/automato_pilha: src/06-livre-contexto/automato_pilha.c | $(BINDIR)
 
 # Derivação
 $(BINDIR)/arvore_derivacao: src/07-derivacao/arvore_derivacao.c | $(BINDIR)
+	$(CC) $(CFLAGS) -o $@ $<
+
+# Gramáticas Sensíveis ao Contexto
+$(BINDIR)/gramatica_sensivel: src/08-sensiveis-contexto/gramatica_sensivel.c | $(BINDIR)
 	$(CC) $(CFLAGS) -o $@ $<
 
 # Compilar e executar todos os programas sequencialmente
