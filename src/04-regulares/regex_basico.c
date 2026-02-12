@@ -96,15 +96,17 @@ static int match_estrela(char c, const char *regex, const char *texto)
      * A primeira iteração corresponde a zero repetições (ε ∈ L(c*)).
      */
     const char *p = texto;
-    do {
+    for (;;) {
         if (match_aqui(regex, p))
             return 1;
-    } while (*p != '\0' && (c == '.' || *p == c) && p++);
-    /*
-     * p++ só é avaliado se o caractere corrente casou com c,
-     * avançando para tentar mais uma repetição.
-     */
 
+        /* Se chegamos ao fim da cadeia ou o próximo caractere não casa, paramos. */
+        if (*p == '\0' || (c != '.' && *p != c))
+            break;
+
+        /* Avança explicitamente para tentar mais uma repetição de c. */
+        p++;
+    }
     return 0;
 }
 
