@@ -37,8 +37,10 @@ typedef struct {
 void fita_inicializar(Fita *f, const char *palavra)
 {
     int tam = (int)strlen(palavra);
-    if (tam >= TAM_FITA)
+    if (tam >= TAM_FITA) {
+        fprintf(stderr, "Aviso: entrada truncada para %d caracteres.\n", TAM_FITA - 1);
         tam = TAM_FITA - 1;
+    }
     memcpy(f->celulas, palavra, tam);
     f->celulas[tam] = '\0';
     f->tamanho = tam;

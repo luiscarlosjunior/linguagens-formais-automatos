@@ -216,6 +216,11 @@ static int mt_simular(const char *palavra)
         printf("\n");
     }
 
+    if (passo >= MAX_PASSOS && estado != Q_ACEITA && estado != Q_REJEITA) {
+        printf("    (limite de %d passos atingido — resultado inconclusivo)\n", MAX_PASSOS);
+        return -1;  /* inconclusivo */
+    }
+
     return (estado == Q_ACEITA) ? 1 : 0;
 }
 
@@ -289,7 +294,12 @@ int main(void)
             printf("Palavra: \"%s\"\n", testes[i]);
 
         resultado = mt_simular(testes[i]);
-        printf("  Resultado: %s\n\n", resultado ? "ACEITA ✓" : "REJEITA ✗");
+        if (resultado == 1)
+            printf("  Resultado: ACEITA ✓\n\n");
+        else if (resultado == -1)
+            printf("  Resultado: INCONCLUSIVO ?\n\n");
+        else
+            printf("  Resultado: REJEITA ✗\n\n");
     }
 
     return 0;

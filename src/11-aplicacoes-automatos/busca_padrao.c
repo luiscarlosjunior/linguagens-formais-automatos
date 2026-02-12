@@ -39,14 +39,20 @@ static int indice_char(const AFDBusca *afd, char c)
 }
 
 /* Extrai caracteres únicos do padrão para formar o alfabeto */
-static void construir_alfabeto(AFDBusca *afd)
+static int construir_alfabeto(AFDBusca *afd)
 {
     int i;
     afd->tam_alfabeto = 0;
     for (i = 0; i < afd->tam_padrao; i++) {
-        if (indice_char(afd, afd->padrao[i]) == -1)
+        if (indice_char(afd, afd->padrao[i]) == -1) {
+            if (afd->tam_alfabeto >= MAX_ALFABETO) {
+                fprintf(stderr, "Erro: padrão excede %d caracteres distintos.\n", MAX_ALFABETO);
+                return 0;
+            }
             afd->alfabeto[afd->tam_alfabeto++] = afd->padrao[i];
+        }
     }
+    return 1;
 }
 
 /*
@@ -57,15 +63,19 @@ static void construir_alfabeto(AFDBusca *afd)
  *
  * Método baseado na construção descrita em Cormen et al. (CLRS).
  */
-static void construir_afd(AFDBusca *afd, const char *padrao)
+static int construir_afd(AFDBusca *afd, const char *padrao)
 {
     int estado, ci;
 
+    if ((int)strlen(padrao) >= MAX_PADRAO) {
+        fprintf(stderr, "Aviso: padrão truncado para %d caracteres.\n", MAX_PADRAO - 1);
+    }
     strncpy(afd->padrao, padrao, MAX_PADRAO - 1);
     afd->padrao[MAX_PADRAO - 1] = '\0';
     afd->tam_padrao = (int)strlen(afd->padrao);
 
-    construir_alfabeto(afd);
+    if (!construir_alfabeto(afd))
+        return 0;
 
     for (estado = 0; estado <= afd->tam_padrao; estado++) {
         for (ci = 0; ci < afd->tam_alfabeto; ci++) {
@@ -93,6 +103,7 @@ static void construir_afd(AFDBusca *afd, const char *padrao)
             afd->tabela[estado][ci] = k;
         }
     }
+    return 1;
 }
 
 /* ================ Impressão do AFD ======================= */
@@ -140,7 +151,8 @@ static int buscar_padrao(const AFDBusca *afd, const char *texto)
     int estado = 0;
     int i;
     int ocorrencias[MAX_OCORRENCIAS];
-    int num_ocorrencias = 0;
+    int num_armazenadas = 0;
+    int total_ocorrencias = 0;
 
     printf("  Rastreamento passo a passo:\n\n");
     printf("  Pos │ Char │ Estado → Próximo │\n");
@@ -155,8 +167,9 @@ static int buscar_padrao(const AFDBusca *afd, const char *texto)
         if (proximo == afd->tam_padrao) {
             int pos_inicio = i - afd->tam_padrao + 1;
             printf(" ✓ Encontrado na posição %d", pos_inicio);
-            if (num_ocorrencias < MAX_OCORRENCIAS)
-                ocorrencias[num_ocorrencias++] = pos_inicio;
+            total_ocorrencias++;
+            if (num_armazenadas < MAX_OCORRENCIAS)
+                ocorrencias[num_armazenadas++] = pos_inicio;
         }
         printf("\n");
 
@@ -165,20 +178,22 @@ static int buscar_padrao(const AFDBusca *afd, const char *texto)
 
     printf("\n");
 
-    if (num_ocorrencias > 0) {
-        printf("  Resultado: %d ocorrência(s) encontrada(s) ✓\n", num_ocorrencias);
+    if (total_ocorrencias > 0) {
+        printf("  Resultado: %d ocorrência(s) encontrada(s) ✓\n", total_ocorrencias);
         printf("  Posições: {");
-        for (i = 0; i < num_ocorrencias; i++) {
+        for (i = 0; i < num_armazenadas; i++) {
             if (i > 0)
                 printf(", ");
             printf("%d", ocorrencias[i]);
         }
+        if (total_ocorrencias > num_armazenadas)
+            printf(", ... (+%d)", total_ocorrencias - num_armazenadas);
         printf("}\n");
     } else {
         printf("  Resultado: Padrão não encontrado ✗\n");
     }
 
-    return num_ocorrencias;
+    return total_ocorrencias;
 }
 
 /* ================ Execução de Exemplo ==================== */

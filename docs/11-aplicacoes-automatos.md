@@ -387,11 +387,11 @@ A tabela a seguir sintetiza as principais aplicações discutidas neste capítul
 | Autômato com Pilha | Análise sintática | Parsers LL e LR |
 | Autômato com Pilha | Validação estrutural | Balanceamento de parênteses, XML |
 | GLC Estocástica | Bioinformática | Estrutura secundária de RNA |
-
-A correspondência entre níveis da hierarquia de Chomsky e domínios de aplicação não é acidental: cada nível captura um grau diferente de complexidade estrutural, e as aplicações naturalmente se alinham ao nível que melhor modela o problema em questão. Autômatos finitos são adequados para problemas que envolvem padrões locais sem dependências de longo alcance; autômatos com pilha, para problemas com aninhamento; e Máquinas de Turing, para problemas que requerem computação arbitrária.
 | Máquina de Turing | Complexidade computacional | Classes P, NP, PSPACE |
 | Máquina de Turing | Criptografia | Segurança baseada em complexidade |
 | Máquina de Turing | Inteligência artificial | Teste de Turing, limites da IA |
+
+A correspondência entre níveis da hierarquia de Chomsky e domínios de aplicação não é acidental: cada nível captura um grau diferente de complexidade estrutural, e as aplicações naturalmente se alinham ao nível que melhor modela o problema em questão. Autômatos finitos são adequados para problemas que envolvem padrões locais sem dependências de longo alcance; autômatos com pilha, para problemas com aninhamento; e Máquinas de Turing, para problemas que requerem computação arbitrária.
 
 A leitura horizontal da tabela revela que os **autômatos finitos** concentram o maior número de aplicações práticas diretas, o que reflete tanto sua eficiência computacional quanto a surpreendente abrangência das linguagens regulares. A leitura vertical, por sua vez, mostra que domínios como bioinformática e compiladores exigem múltiplos níveis da hierarquia de Chomsky — desde expressões regulares para análise léxica até gramáticas livres de contexto para análise sintática.
 
@@ -403,12 +403,11 @@ A leitura horizontal da tabela revela que os **autômatos finitos** concentram o
 
 Uma implementação em linguagem C dos conceitos discutidos neste capítulo está disponível no diretório `src/11-aplicacoes-automatos/`:
 
-- **Simulação de busca de padrões com AFD** — implementação de um autômato finito determinístico que realiza casamento de padrões (*pattern matching*) sobre uma cadeia de entrada, ilustrando o funcionamento interno de ferramentas como o grep
-- **Máquina de estados para comportamento de NPC** — implementação de uma FSM que simula as transições comportamentais de um personagem não-jogável, conforme descrito no Exemplo 11.8
+- **Simulação de busca de padrões com AFD** — implementação de um autômato finito determinístico que constrói uma tabela de transições a partir de um padrão (*string*) arbitrário e realiza casamento de padrões (*pattern matching*) sobre uma cadeia de entrada, ilustrando o funcionamento interno de ferramentas como o grep
 
 Consulte os arquivos-fonte e seus respectivos comentários para detalhes de implementação. Cada programa inclui exemplos de entrada que correspondem às construções e análises apresentadas nas seções anteriores, permitindo ao estudante verificar os resultados manualmente. Os programas podem ser compilados com qualquer compilador C compatível com o padrão C99 e executados em linha de comando.
 
-> **Nota:** A implementação de busca de padrões demonstra a construção manual de um AFD para a expressão regular (a|b)*abb, conforme apresentado no Exemplo 11.1. O programa percorre a cadeia de entrada caractere a caractere, simulando as transições do autômato, e reporta as posições onde o padrão é encontrado. Essa abordagem didática permite ao estudante observar concretamente o funcionamento do AFD que fundamenta ferramentas como grep e as bibliotecas de expressões regulares.
+> **Nota:** A implementação de busca de padrões demonstra a construção de um AFD diretamente a partir de um padrão textual (ex.: "aba", "aab"), utilizando o método descrito em Cormen et al. (CLRS). O programa percorre a cadeia de entrada caractere a caractere, simulando as transições do autômato, e reporta as posições onde o padrão é encontrado. Essa abordagem didática permite ao estudante observar concretamente o funcionamento do AFD que fundamenta ferramentas como grep e as bibliotecas de expressões regulares.
 
 ---
 

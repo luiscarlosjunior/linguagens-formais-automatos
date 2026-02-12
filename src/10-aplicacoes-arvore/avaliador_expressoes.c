@@ -119,8 +119,13 @@ void proximo_token(Lexer *lex)
     }
 
     if (lex->entrada[lex->pos] >= '0' && lex->entrada[lex->pos] <= '9') {
-        lex->token = 'd';  /* dígito */
-        lex->valor_token = lex->entrada[lex->pos] - '0';
+        lex->token = 'd';  /* número */
+        lex->valor_token = 0;
+        while (lex->entrada[lex->pos] >= '0' && lex->entrada[lex->pos] <= '9') {
+            lex->valor_token = lex->valor_token * 10 + (lex->entrada[lex->pos] - '0');
+            lex->pos++;
+        }
+        return;  /* não avança pos extra */
     } else {
         lex->token = lex->entrada[lex->pos];
     }
@@ -161,6 +166,9 @@ No *parse_F(Lexer *lex)
         if (lex->token == ')') {
             adicionar_filho(no, criar_no(")"));
             proximo_token(lex);  /* consome ')' */
+        } else {
+            fprintf(stderr, "Erro de sintaxe: ')' esperado na posição %d\n", lex->pos);
+            exit(1);
         }
         return no;
     }
@@ -242,9 +250,15 @@ No *parse_E(Lexer *lex)
 No *construir_arvore(const char *expr)
 {
     Lexer lex;
+    No *arvore;
     lexer_init(&lex, expr);
     proximo_token(&lex);
-    return parse_E(&lex);
+    arvore = parse_E(&lex);
+    if (lex.token != '\0') {
+        fprintf(stderr, "Erro de sintaxe: entrada não consumida na posição %d\n", lex.pos);
+        exit(1);
+    }
+    return arvore;
 }
 
 /* ============== Avaliação da Árvore ====================== */
@@ -308,7 +322,7 @@ void processar_expressao(const char *expr)
     printf("\n");
 
     resultado = avaliar(arvore);
-    printf("  Avaliação: %s ⇒ %.0f\n\n", expr, resultado);
+    printf("  Avaliação: %s ⇒ %g\n\n", expr, resultado);
 
     liberar_arvore(arvore);
 }
