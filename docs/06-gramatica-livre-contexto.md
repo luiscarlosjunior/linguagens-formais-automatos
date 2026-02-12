@@ -467,12 +467,9 @@ Esse lema é a ferramenta principal para demonstrar que uma linguagem **não** �
 
 ## 6.8 Exemplo em C
 
-Implementações em linguagem C dos conceitos e algoritmos discutidos neste capítulo estão disponíveis no diretório `src/06-livre-contexto/`:
+Uma implementação em linguagem C dos conceitos discutidos neste capítulo está disponível no diretório `src/06-livre-contexto/`:
 
 - **Simulação de Autômato com Pilha** (aceitação por estado final e por pilha vazia)
-- **Verificação de pertinência** (algoritmo CYK para gramáticas na FNC)
-- **Simplificação de GLC** (remoção de produções-ε, unitárias e símbolos inúteis)
-- **Conversão para Forma Normal de Chomsky**
 
 Consulte os arquivos-fonte e seus respectivos comentários para detalhes de implementação. Cada programa inclui exemplos de entrada que correspondem às gramáticas e autômatos apresentados nas seções anteriores, permitindo ao estudante verificar os resultados manualmente.
 
