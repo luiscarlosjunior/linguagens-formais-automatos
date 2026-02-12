@@ -497,12 +497,9 @@ O livro *Compilers: Principles, Techniques, and Tools* de **Aho, Sethi e Ullman*
 
 ## 7.8 Exemplo em C
 
-Implementações em linguagem C dos conceitos e algoritmos discutidos neste capítulo estão disponíveis no diretório `src/07-derivacao/`:
+Uma implementação em linguagem C dos conceitos e algoritmos discutidos neste capítulo está disponível no arquivo `src/07-derivacao/arvore_derivacao.c`:
 
 - **Construção de árvore de derivação** para gramáticas livres de contexto simples
-- **Parser recursivo descendente** (top-down) para expressões aritméticas com a gramática não-ambígua E → E+T | T, T → T\*F | F, F → (E) | id
-- **Verificação de ambiguidade** por enumeração de derivações à esquerda para cadeias curtas
-- **Construção de AST** a partir de expressões aritméticas
 
 Consulte os arquivos-fonte e seus respectivos comentários para detalhes de implementação. Cada programa inclui exemplos de entrada que correspondem às gramáticas e árvores apresentadas nas seções anteriores, permitindo ao estudante verificar os resultados manualmente.
 
