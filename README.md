@@ -15,6 +15,7 @@ Os tópicos cobrem desde os conceitos matemáticos preliminares até gramáticas
 
 ## Sumário
 
+0. [Conceitos Base da Computação](docs/00-conceitos-base-computacao.md)
 1. [Conceitos Matemáticos para Linguagens Formais](docs/01-conceitos-matematicos.md)
 2. [Alfabetos, Palavras, Linguagens, Gramáticas e Hierarquia de Linguagens](docs/02-alfabetos-palavras-linguagens.md)
 3. [Autômato Finito Determinístico e Não Determinístico](docs/03-automatos-finitos.md)
