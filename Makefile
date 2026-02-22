@@ -6,6 +6,8 @@ BINDIR = bin
 
 # Lista de executáveis
 EXECUTABLES = \
+	$(BINDIR)/tipos_dados \
+	$(BINDIR)/representacao_binaria \
 	$(BINDIR)/conjuntos \
 	$(BINDIR)/relacoes \
 	$(BINDIR)/linguagens \
@@ -27,6 +29,13 @@ all: $(BINDIR) $(EXECUTABLES)
 # Criação do diretório de saída
 $(BINDIR):
 	mkdir -p $(BINDIR)
+
+# Conceitos Base da Computação
+$(BINDIR)/tipos_dados: src/00-conceitos-base-computacao/tipos_dados.c | $(BINDIR)
+	$(CC) $(CFLAGS) -o $@ $<
+
+$(BINDIR)/representacao_binaria: src/00-conceitos-base-computacao/representacao_binaria.c | $(BINDIR)
+	$(CC) $(CFLAGS) -o $@ $<
 
 # Conceitos Matemáticos
 $(BINDIR)/conjuntos: src/01-conceitos-matematicos/conjuntos.c | $(BINDIR)
