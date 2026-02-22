@@ -86,7 +86,7 @@ int main(void) {
     /* --- Deslocamentos --- */
     printf("--- Deslocamentos (shift) ---\n");
 
-    unsigned int x = 0b00001010;  /* 10 */
+    unsigned int x = 0x0A;  /* 10 */
     printf("  x          = ");
     imprimir_binario(x, 8);
     printf("  (%u)\n", x);
