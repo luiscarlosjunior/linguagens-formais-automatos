@@ -56,8 +56,8 @@ int main(void) {
     /* --- Operações bit a bit --- */
     printf("--- Operacoes bit a bit ---\n");
 
-    unsigned int A = 0b10110100;  /* 180 */
-    unsigned int B = 0b01101110;  /* 110 */
+    unsigned int A = 0xB4;  /* 180 */
+    unsigned int B = 0x6E;  /* 110 */
 
     printf("  A         = ");
     imprimir_binario(A, 8);
