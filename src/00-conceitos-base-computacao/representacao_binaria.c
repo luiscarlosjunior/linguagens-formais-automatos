@@ -106,7 +106,7 @@ int main(void) {
     /* --- Máscaras de bits --- */
     printf("--- Mascaras de bits ---\n");
 
-    unsigned int flags = 0b10110010;  /* byte de "flags" de estado */
+    unsigned int flags = 0xB2;  /* byte de "flags" de estado (1011 0010) */
 
     /* Verificar se o bit n está ativo: (flags >> n) & 1 */
     printf("  flags = ");
