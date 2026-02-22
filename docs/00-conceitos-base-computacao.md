@@ -223,7 +223,7 @@ Os tipos de dados são uma das formas de abstração mais importantes: ao declar
 |------|-----------|----------------|---------|
 | `char` | Caractere / inteiro pequeno | 1 byte | −128 a 127 (com sinal) ou 0 a 255 (sem sinal) |
 | `int` | Inteiro | 4 bytes | −2.147.483.648 a 2.147.483.647 |
-| `long` | Inteiro longo | 8 bytes | −9,2 × 10¹⁸ a 9,2 × 10¹⁸ |
+| `long` | Inteiro longo | 8 bytes | −9,2 × 10^18 a 9,2 × 10^18 |
 | `float` | Ponto flutuante de precisão simples | 4 bytes | ≈ ±3,4 × 10³⁸ (7 dígitos) |
 | `double` | Ponto flutuante de precisão dupla | 8 bytes | ≈ ±1,8 × 10^308 (15 dígitos) |
 | `_Bool` | Valor booleano | 1 byte | 0 (falso) ou 1 (verdadeiro) |
