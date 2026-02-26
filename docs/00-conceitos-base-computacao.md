@@ -385,13 +385,13 @@ Um **compilador** transforma um programa escrito em linguagem de alto nível em 
 
 ```mermaid
 flowchart LR
-    A[Código-fonte\n(.c)] --> B[Analisador\nLéxico]
-    B -->|tokens| C[Analisador\nSintático]
-    C -->|árvore sintática| D[Analisador\nSemântico]
-    D -->|AST anotada| E[Gerador de\nCódigo Intermediário]
+    A["Código-fonte<br/>(.c)"] --> B[Analisador<br/>Léxico]
+    B -->|tokens| C[Analisador<br/>Sintático]
+    C -->|árvore sintática| D[Analisador<br/>Semântico]
+    D -->|AST anotada| E[Gerador de<br/>Código Intermediário]
     E --> F[Otimizador]
-    F --> G[Gerador de\nCódigo de Máquina]
-    G --> H[Executável\n(.exe / ELF)]
+    F --> G[Gerador de<br>/Código de Máquina]
+    G --> H["Executável<br/>(.exe / ELF)"]
 ```
 
 - O **analisador léxico** usa **autômatos finitos** para reconhecer tokens (palavras-chave, identificadores, números).
